@@ -36,6 +36,7 @@ $("#citySearch").submit(async function (event) {
 function outputWeather(data) {
   if (cityArr.includes(data.name)) {
     alert("there is such a city");
+    $("#cityName").val("");
     return;
   }
   if (!cityArr.length) {
@@ -52,5 +53,5 @@ function outputWeather(data) {
   }
   cityArr.push(data.name);
   console.log(cityArr);
-  $("#cityName").text("");
+  $("#cityName").val("");
 }
