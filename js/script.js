@@ -63,6 +63,4 @@ function FillingCard(data) {
   $("#data").children()[1].innerText=`Temperature: ${(data.main.temp - 273).toFixed(1)} C`;
   $("#data").children()[2].innerText=`Pressure: ${data.main.pressure} hPa`;
   $("#data").children()[3].innerText=`Wind speed: ${data.wind.speed} meter/sec`;
-  
-  
 }

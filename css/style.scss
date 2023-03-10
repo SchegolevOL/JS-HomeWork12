@@ -1,5 +1,18 @@
+body{
+    background-image: url(../images/fone.jpg);
+    h1{
+        color: darkgreen;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+    }
+}
+.container{
+    margin-left: 370px;
+}
 #cities {
+     
     .element {
+       
         .header {
             border: 1px solid rgb(163, 160, 160);
             display: flex;
