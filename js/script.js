@@ -1,6 +1,5 @@
-import { MyCard } from "./my-card.js";
-customElements.define("my-card", MyCard);
 let cityArr = [];
+let data;
 /*===============================================*/
 
 $("#cities .header").click(function () {
@@ -22,18 +21,19 @@ $("#citySearch").submit(async function (event) {
   let cityName = $("#cityName").val();
 
   try {
-    let data = await $.get(
+    data = await $.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=079a3aaf7cde90e18d39bd4285644528`
     );
     console.log(data);
-    outputWeather(data);
   } catch (error) {
     alert("error");
   }
+  CreatingCard(data);
+  FillingCard(data);
 });
 /*===============================================*/
 
-function outputWeather(data) {
+function CreatingCard(data) {
   if (cityArr.includes(data.name)) {
     alert("there is such a city");
     $("#cityName").val("");
@@ -43,15 +43,26 @@ function outputWeather(data) {
     $("#cities .element:first")
       .find(".header")
       .html(data.name + '<i class="fa-solid fa-plus"></i>');
-    $("#cities").removeClass("none");    
+    $("#cities").removeClass("none");
   } else {
     $("#cities .element:first")
       .clone(true, true)
-      .appendTo("#cities")
+      .prependTo("#cities")
       .find(".header")
-      .html(data.name + '<i class="fa-solid fa-plus"></i>');    
+      .html(data.name + '<i class="fa-solid fa-plus"></i>');
   }
+  $("#cities .element:first").find(".header").trigger("click");
   cityArr.push(data.name);
+
   console.log(cityArr);
   $("#cityName").val("");
+}
+
+function FillingCard(data) {
+  $("#data").children()[0].innerText=`Temperature: ${data.main.temp} K`;
+  $("#data").children()[1].innerText=`Temperature: ${(data.main.temp - 273).toFixed(1)} C`;
+  $("#data").children()[2].innerText=`Pressure: ${data.main.pressure} hPa`;
+  $("#data").children()[3].innerText=`Wind speed: ${data.wind.speed} meter/sec`;
+  
+  
 }
