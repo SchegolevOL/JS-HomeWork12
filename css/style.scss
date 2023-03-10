@@ -1,0 +1,20 @@
+#cities {
+    .element {
+        .header {
+            border: 1px solid rgb(163, 160, 160);
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            font-size: 15px;
+            i {
+                padding: 5px;
+            }
+        }
+        .discription {
+            display: none;
+        }
+    }
+}
+.none {
+    display: none;
+}
